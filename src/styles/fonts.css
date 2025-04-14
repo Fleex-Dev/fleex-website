@@ -1,0 +1,125 @@
+@font-face {
+	font-family: JoyrideSTD;
+	src: url('/fonts/Joyride/JoyrideSTD.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: JoyrideSTDOutline;
+	src: url('/fonts/Joyride/JoyrideSTDOutline.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Pretendard;
+	src: url('/fonts/Pretendard/PretendardVariable.woff2') format('woff2');
+}
+
+.font-pretendard {
+	font-family: Pretendard, sans-serif;
+	letter-spacing: -0.05em;
+	font-stretch: -50%;
+}
+
+.font-joyride {
+	font-family: JoyrideSTD, sans-serif;
+}
+
+.font-joyride-outline {
+	font-family: JoyrideSTDOutline, sans-serif;
+}
+
+:root {
+	/* 작은 글자 - 거의 줄이지 않음 */
+	--text-xs: clamp(0.72rem, 1.2vw, 0.75rem);
+	--line-height-xs: clamp(1rem, 1.5vw, 1.05rem);
+
+	--text-sm: clamp(0.8rem, 1.5vw, 0.875rem);
+	--line-height-sm: clamp(1.1rem, 1.8vw, 1.25rem);
+
+	/* 보통 크기 - 부드럽게 줄어듦 */
+	--text-base: clamp(0.75rem, 2vw, 1rem);
+	--line-height-base: clamp(1rem, 2.2vw, 1.5rem);
+
+	--text-lg: clamp(0.85rem, 2.5vw, 1.125rem);
+	--line-height-lg: clamp(1.2rem, 2.8vw, 1.75rem);
+
+	--text-xl: clamp(1rem, 3vw, 1.25rem);
+	--line-height-xl: clamp(1.4rem, 3.2vw, 1.75rem);
+
+	/* 큰 글자 - 더 많이 줄어듦 */
+	--text-2xl: clamp(1rem, 3.5vw, 1.5rem);
+	--line-height-2xl: clamp(1.4rem, 3.8vw, 2rem);
+
+	--text-3xl: clamp(1.2rem, 4vw, 1.875rem);
+	--line-height-3xl: clamp(1.6rem, 4.2vw, 2.25rem);
+
+	--text-4xl: clamp(1.4rem, 4.5vw, 2.25rem);
+	--line-height-4xl: clamp(1.8rem, 4.8vw, 2.5rem);
+
+	--text-5xl: clamp(1.6rem, 5vw, 3rem);
+	--line-height-5xl: clamp(2rem, 5vw, 3.2rem);
+
+	--text-6xl: clamp(1.8rem, 6vw, 3.75rem);
+	--line-height-6xl: clamp(2.2rem, 6.2vw, 4rem);
+
+	--text-7xl: clamp(2.1rem, 7vw, 4.5rem);
+	--line-height-7xl: clamp(2.6rem, 7.2vw, 4.8rem);
+
+	--text-8xl: clamp(2.6rem, 8vw, 6rem);
+	--line-height-8xl: clamp(3.3rem, 8.2vw, 6.2rem);
+
+	--text-9xl: clamp(3.2rem, 10vw, 8rem);
+	--line-height-9xl: clamp(4.2rem, 10.5vw, 8.5rem);
+}
+
+.text-xs {
+	font-size: var(--text-xs);
+	line-height: var(--line-height-xs);
+}
+.text-sm {
+	font-size: var(--text-sm);
+	line-height: var(--line-height-sm);
+}
+.text-base {
+	font-size: var(--text-base);
+	line-height: var(--line-height-base);
+}
+.text-lg {
+	font-size: var(--text-lg);
+	line-height: var(--line-height-lg);
+}
+.text-xl {
+	font-size: var(--text-xl);
+	line-height: var(--line-height-xl);
+}
+.text-2xl {
+	font-size: var(--text-2xl);
+	line-height: var(--line-height-2xl);
+}
+.text-3xl {
+	font-size: var(--text-3xl);
+	line-height: var(--line-height-3xl);
+}
+.text-4xl {
+	font-size: var(--text-4xl);
+	line-height: var(--line-height-4xl);
+}
+.text-5xl {
+	font-size: var(--text-5xl);
+	line-height: var(--line-height-5xl);
+}
+.text-6xl {
+	font-size: var(--text-6xl);
+	line-height: var(--line-height-6xl);
+}
+.text-7xl {
+	font-size: var(--text-7xl);
+	line-height: var(--line-height-7xl);
+}
+.text-8xl {
+	font-size: var(--text-8xl);
+	line-height: var(--line-height-8xl);
+}
+.text-9xl {
+	font-size: var(--text-9xl);
+	line-height: var(--line-height-9xl);
+}
