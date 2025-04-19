@@ -65,7 +65,7 @@
 <main
 	bind:this={globe}
 	class={cn(
-		'pointer-events-none fixed inset-0 z-0 mx-auto flex h-full w-full items-center justify-center overflow-hidden'
+		'pointer-events-none fixed inset-0 z-0 mx-auto flex h-full w-full items-center justify-center'
 	)}>
 	<div class="relative aspect-square w-full max-w-[600px]">
 		<canvas

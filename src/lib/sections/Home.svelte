@@ -31,8 +31,8 @@
 
 <section bind:this={homeSection}>
 	<div class="relative flex h-screen w-screen flex-col">
-		<div class="relatvie flex h-screen w-screen items-center justify-center">
-			<Globe bind:globe bind:scrollProgress />
+		<Globe bind:globe bind:scrollProgress />
+		<div class="fixed flex h-full w-full items-center justify-center">
 			<p
 				class="font-joyride-outline text-center text-[8vw] leading-none whitespace-nowrap text-white">
 				{#each chars as char, i}
