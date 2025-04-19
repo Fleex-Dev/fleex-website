@@ -31,7 +31,7 @@
 
 <section bind:this={homeSection}>
 	<div class="relative flex h-screen w-screen flex-col">
-		<div class="relative flex items-center justify-center overflow-hidden">
+		<div class="relatvie flex h-screen w-screen items-center justify-center">
 			<Globe bind:globe bind:scrollProgress />
 			<p
 				class="font-joyride-outline text-center text-[8vw] leading-none whitespace-nowrap text-white">
@@ -44,16 +44,14 @@
 					</span>
 				{/each}
 			</p>
-			<div
-				bind:this={homeScrollIndicator}
-				class="absolute bottom-0 mb-4 flex flex-col items-center">
-				<p class="font-pretendard font-regular text-2xl text-white">Scroll Down</p>
-				<IconifyIcon
-					style="color: white"
-					width="48.0"
-					height="48.0"
-					icon="material-symbols-light:keyboard-double-arrow-down" />
-			</div>
+		</div>
+		<div bind:this={homeScrollIndicator} class="absolute bottom-0 mb-4 flex flex-col items-center">
+			<p class="font-pretendard font-regular text-2xl text-white">Scroll Down</p>
+			<IconifyIcon
+				style="color: white"
+				width="48.0"
+				height="48.0"
+				icon="material-symbols-light:keyboard-double-arrow-down" />
 		</div>
 	</div>
 </section>
