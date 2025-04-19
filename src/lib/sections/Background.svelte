@@ -4,7 +4,7 @@
 	export let starsOpacity: number;
 </script>
 
-<div class="no-scrollbar flex h-screen w-screen flex-col items-center justify-start bg-black">
+<div class="no-scrollbar z-0 flex h-screen w-screen flex-col items-center justify-start bg-black">
 	<Stars bind:opacity={starsOpacity} />
 	<div class="absolute h-screen w-screen">
 		<slot />

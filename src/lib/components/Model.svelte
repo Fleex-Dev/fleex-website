@@ -16,22 +16,21 @@
 			0.1,
 			1000
 		);
-		const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); // alpha: true로 배경을 투명하게 설정
+		const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		camera.position.z = 2;
 
 		// WebGLRenderer의 배경을 투명하게 설정
-		renderer.setClearColor(0x000000, 0); // 첫 번째 인자는 색상, 두 번째 인자는 투명도(0이면 투명)
+		renderer.setClearColor(0x000000, 0);
 
 		// 광원 설정
 		const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
 		scene.add(ambientLight);
-
 		const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 		directionalLight.position.set(5, 10, 7.5);
 		scene.add(directionalLight);
 
-		// Draco loader
+		// Draco loader 설정
 		const dracoLoader = new DRACOLoader();
 		dracoLoader.setDecoderPath('/draco/');
 		const loader = new GLTFLoader();
@@ -39,20 +38,27 @@
 
 		loader.load('/models/iphone/iphone.glb', (gltf) => {
 			model = gltf.scene;
-			model.scale.set(10, 10, 10);
+			model.scale.set(5, 5, 5);
 			model.rotation.set(3, 0.2, 10);
 			scene.add(model);
 		});
 
+		// 화면 크기 변경 시 호출할 함수: 카메라와 렌더러 업데이트
+		const onResize = () => {
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		};
+		window.addEventListener('resize', onResize);
+
+		// 애니메이션 루프
 		const animate = () => {
 			requestAnimationFrame(animate);
-
-			// 모델 회전 로직은 삭제됨
-
 			renderer.render(scene, camera);
 		};
 		animate();
 	});
 </script>
 
-<canvas bind:this={canvas} class="z-1 h-screen w-screen bg-transparent"></canvas>
+<canvas bind:this={canvas} class="pointer-events-none absolute top-0 left-0 z-10 h-full w-full"
+></canvas>

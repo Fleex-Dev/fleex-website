@@ -22,12 +22,16 @@
 
 	let aboutSection: HTMLElement;
 	let model: THREE.Object3D;
+	let aboutSlide: HTMLElement;
 
 	let scrollProgress = 0;
-
 	let starsOpacity = 0;
 
 	gsap.registerPlugin(ScrollTrigger);
+
+	let lastRotation = 0;
+	let currentSlide = 0; // 현재 보여지는 슬라이드 인덱스
+	const totalSlides = 3; // 슬라이드 개수
 
 	onMount(() => {
 		// Splash 애니메이션
@@ -44,30 +48,22 @@
 			);
 		});
 
-		// Home 텍스트
+		// Home 텍스트 애니메이션
 		homeHeadline.forEach((span, i) => {
 			timeline.fromTo(
 				span,
-				{ opacity: 0, y: 10, scale: 0.98 }, // y값 줄이고 약간 축소
+				{ opacity: 0, y: 10, scale: 0.98 },
 				{ opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' },
 				`afterSplash+=${i * 0.08}`
 			);
 		});
 
-		// Globe
+		// Globe 애니메이션
 		timeline
 			.fromTo(
 				globe,
-				{
-					opacity: 0,
-					scale: 0
-				},
-				{
-					opacity: 1,
-					scale: 1,
-					duration: 1,
-					ease: 'power3.out'
-				}
+				{ opacity: 0, scale: 0 },
+				{ opacity: 1, scale: 1, duration: 1, ease: 'power3.out' }
 			)
 			.to(
 				{ val: starsOpacity },
@@ -76,23 +72,15 @@
 					duration: 1,
 					ease: 'power2.out',
 					onUpdate() {
-						starsOpacity = this.targets()[0].val; // 반응형 바인딩을 업데이트
+						starsOpacity = this.targets()[0].val;
 					}
 				},
-				'afterGlobe' // ← 라벨로 연결
+				'afterGlobe'
 			)
 			.fromTo(
 				nav,
-				{
-					y: '-100%',
-					opacity: 0
-				},
-				{
-					y: '0%',
-					opacity: 1,
-					duration: 1,
-					ease: 'power3.out'
-				}
+				{ y: '-100%', opacity: 0 },
+				{ y: '0%', opacity: 1, duration: 1, ease: 'power3.out' }
 			)
 			.fromTo(
 				homeScrollIndicator,
@@ -104,28 +92,25 @@
 
 		timeline.play();
 
+		// Update for the home section scroll
 		ScrollTrigger.create({
-			trigger: homeSection, // 스크롤 기준이 되는 섹션
+			trigger: homeSection,
 			start: 'top top',
-			end: '+=500', // 1000px 스크롤 동안 애니메이션 진행
+			end: 'bottom center',
 			scrub: true,
 			onUpdate: (self) => {
 				const progress = self.progress;
 				scrollProgress = progress;
 
-				const scale = 1 + progress * 5; // 스크롤이 진행될수록 5배까지 커짐
+				const scale = 1 + progress * 5;
 				globe.style.transform = `scale(${scale})`;
 
 				starsOpacity = 1 - progress;
 				homeScrollIndicator.style.opacity = `${1 - progress}`;
-
-				if (progress >= 0.95) {
-					gsap.to(globe, { opacity: 0, duration: 0.5, ease: 'power2.out' });
-				} else {
-					gsap.to(globe, { opacity: 1, duration: 0.5, ease: 'power2.out' });
-				}
 			}
 		});
+
+		// Fade globe out when entering about section
 		ScrollTrigger.create({
 			trigger: aboutSection,
 			start: 'top center',
@@ -137,16 +122,19 @@
 				gsap.to(globe, { opacity: 1, duration: 0.5, ease: 'power2.out' });
 			}
 		});
+
+		// About section scroll: Rotate model and handle background slide on full rotation
 		ScrollTrigger.create({
 			trigger: aboutSection,
 			start: 'top top',
-			end: '+=3000',
 			scrub: true,
 			pin: true,
 			onUpdate: (self) => {
 				const progress = self.progress;
+				// Calculate the current rotation in radians (adjust factor as needed)
+				const currentRotation = progress * Math.PI * 6;
 				if (model) {
-					model.rotation.y = progress * Math.PI * 1; // 360도 회전
+					model.rotation.y = currentRotation;
 				}
 			}
 		});
@@ -166,7 +154,7 @@
 			bind:globe
 			bind:homeScrollIndicator
 			bind:scrollProgress />
-		<About bind:aboutSection bind:model />
+		<About bind:aboutSection bind:model bind:aboutSlide />
 		<!-- 추가 콘텐츠: 예시로 긴 스크롤 섹션 -->
 		<section class="relative h-[500vh] w-screen"></section>
 	</div>

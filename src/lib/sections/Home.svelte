@@ -30,8 +30,8 @@
 </script>
 
 <section bind:this={homeSection}>
-	<div class="relative flex flex-col">
-		<div class="relative flex h-screen w-screen items-center justify-center overflow-hidden">
+	<div class="relative flex h-screen w-screen flex-col">
+		<div class="relative flex items-center justify-center overflow-hidden">
 			<Globe bind:globe bind:scrollProgress />
 			<p
 				class="font-joyride-outline text-center text-[8vw] leading-none whitespace-nowrap text-white">
